@@ -1,0 +1,30 @@
+<div class="flex items-center justify-center min-h-screen" style="background-image: linear-gradient(to right bottom, #4f46e5, #3b82f6);">
+  <div class="w-full max-w-sm bg-white p-8 rounded-xl shadow-lg">
+    <div class="flex justify-center mb-6">
+      <mat-icon class="text-5xl">description</mat-icon>
+    </div>
+    <h2 class="text-center text-xl font-bold text-gray-800 mb-1">Sistema de Anamnese</h2>
+    <p class="text-center text-sm text-gray-500 mb-6">Faça login para acessar o sistema.</p>
+
+    <form class="flex flex-col gap-4 ">
+      <mat-form-field appearance="outline" class="custom no_hint">
+        <mat-label>E-mail</mat-label>
+        <input matInput placeholder="seu@email.com" type="email" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="custom no_hint">
+        <mat-label>Senha</mat-label>
+        <input matInput placeholder="********" type="password" required>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" class="w-full mb-4">
+        <mat-icon class="mr-2">login</mat-icon>
+        Entrar
+      </button>
+
+      <p class="text-center text-xs text-gray-500">
+        <!-- Use admin@example.com e "password" para testar. -->
+      </p>
+    </form>
+  </div>
+</div>
