@@ -1,14 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
+import {MatRippleModule} from '@angular/material/core';
 
 @Component({
   selector: 'app-sidebar',
   imports: [
     CommonModule,
     MatIconModule,
-    MatButton,
+    MatButtonModule,
+    MatRippleModule
 
   ],
   templateUrl: './sidebar.component.html',

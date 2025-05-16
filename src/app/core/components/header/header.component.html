@@ -1,7 +1,11 @@
-<header class="h-16 bg-gradient-to-r from-indigo-600 to-blue-500 text-white flex items-center justify-between px-6">
+<header class="h-[80px] flex items-center justify-between px-6 bg-[var(--mat-sys-primary)]">
   <div></div> <!-- espaço reservado para ícone ou título -->
-  <button mat-stroked-button color="primary" class="bg-white text-blue-600 hover:bg-gray-100">
-    <mat-icon class="mr-2">logout</mat-icon>
-    Sair
+  <button mat-icon-button matRipple>
+    <div class="text-[var(--mat-sys-on-primary)]">
+      <span class="material-symbols-rounded">
+        logout
+      </span>
+    </div>
+
   </button>
 </header>

@@ -1,5 +1,5 @@
-<div class="flex justify-between items-center mb-6">
-  <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
+<div class="flex justify-between items-center mb-6 box-border">
+  <h1 class="text-2xl font-bold text-[var(--mat-sys-primary)]">Dashboard</h1>
   <button mat-raised-button color="primary">Nova Anamnese</button>
 </div>
 
@@ -10,9 +10,15 @@
   <input matInput>
 </mat-form-field>
 
-<div class="w-full border border-gray-200 rounded-lg p-8 text-center bg-white">
-  <mat-icon class="text-5xl text-blue-500 mb-4">description</mat-icon>
-  <h2 class="text-lg font-semibold mb-2">Nenhuma anamnese encontrada</h2>
+<div class="w-full bg-transparent rounded-lg p-8 text-center box-border" style="border: var(--main-border);">
+
+  <div class="text-5xl text-[var(--mat-sys-secondary)] mb-4">
+    <span class="material-symbols-rounded">
+      description
+    </span>
+  </div>
+
+  <h2 class="text-lg font-semibold mb-2 text-[var(--mat-sys-on-background)]">Nenhuma anamnese encontrada</h2>
   <p class="text-gray-500 mb-4">Você ainda não possui anamneses cadastradas ou nenhuma corresponde à sua busca.</p>
   <button mat-raised-button color="primary">Criar primeira anamnese</button>
 </div>

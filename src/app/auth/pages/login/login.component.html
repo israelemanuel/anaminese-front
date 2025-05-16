@@ -1,10 +1,16 @@
-<div class="flex items-center justify-center min-h-screen" style="background-image: linear-gradient(to right bottom, #4f46e5, #3b82f6);">
-  <div class="w-full max-w-sm bg-white p-8 rounded-xl shadow-lg">
-    <div class="flex justify-center mb-6">
-      <mat-icon class="text-5xl">description</mat-icon>
+<div class="flex items-center justify-center min-h-screen degrade-background">
+  <div class="w-full max-w-sm bg-[var(--mat-sys-surface)] p-4 rounded-xl shadow-lg">
+
+    <div class="w-full flex items-center justify-center">
+      <div class="h-[56px] aspect-square flex flex-col items-center justify-center rounded-full text-white">
+        <span class="material-symbols-rounded">
+          account_circle
+        </span>
+      </div>
     </div>
-    <h2 class="text-center text-xl font-bold text-gray-800 mb-1">Sistema de Anamnese</h2>
-    <p class="text-center text-sm text-gray-500 mb-6">Faça login para acessar o sistema.</p>
+
+    <h2 class="text-center text-xl font-bold text-[var(--mat-sys-on-surface)] mb-1">Sistema de Anamnese</h2>
+    <p class="text-center text-sm text-[var(--mat-sys-on-surface)] mb-6">Faça login para acessar o sistema.</p>
 
     <form class="flex flex-col gap-4 ">
       <mat-form-field appearance="outline" class="custom no_hint">
@@ -17,13 +23,13 @@
         <input matInput placeholder="********" type="password" required>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" class="w-full mb-4">
+      <button mat-raised-button color="primary" (click)="signIn()" class="w-full mb-4">
         <mat-icon class="mr-2">login</mat-icon>
         Entrar
       </button>
 
-      <p class="text-center text-xs text-gray-500">
-        <!-- Use admin@example.com e "password" para testar. -->
+      <p class="text-center text-xs text-[var(--mat-sys-on-surface)]">
+        Use admin&#64;example.com e "password" para testar.
       </p>
     </form>
   </div>

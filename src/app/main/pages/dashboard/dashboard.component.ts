@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormField, MatInput, MatInputModule } from '@angular/material/input';
@@ -11,6 +12,7 @@ import { MatFormField, MatInput, MatInputModule } from '@angular/material/input'
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatButtonModule
 
   ],
   templateUrl: './dashboard.component.html',

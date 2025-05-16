@@ -1,19 +1,29 @@
-<aside class="w-64 bg-white shadow flex flex-col">
-  <div class="h-16 flex items-center justify-center border-b">
-    <span class="text-lg font-bold text-blue-700">Sistema de Anamnese</span>
-  </div>
-  <nav class="flex-1 p-4 space-y-2">
-    <button mat-button color="primary" class="w-full justify-start rounded-md" [class.bg-blue-100]="true">
-      <mat-icon>home</mat-icon>
-      <span class="ml-2">Dashboard</span>
-    </button>
-    <button mat-button class="w-full justify-start rounded-md">
-      <mat-icon>description</mat-icon>
-      <span class="ml-2">Nova Anamnese</span>
-    </button>
-    <button mat-button class="w-full justify-start rounded-md">
-      <mat-icon>group</mat-icon>
-      <span class="ml-2">Gerenciar Usuários</span>
-    </button>
+<aside class="w-64 bg-[var(--mat-sys-surface)] shadow flex flex-col h-full">
+  <div class="h-[80px] w-full bg-[var(--mat-sys-primary)]"></div>
+  <nav class="flex-1 flex-col p-4 h-full ">
+    <div matRipple class="flex items-center w-full bg-transparent text-[var(--mat-sys-on-background)] rounded-full h-[48px]">
+      <div class="w-full px-6 flex items-center justify-start">
+        <span class="material-symbols-rounded">
+          home
+        </span>
+        <span class="ml-2">Dashboard</span>
+      </div>
+    </div>
+    <div matRipple class="flex items-center w-full bg-transparent text-[var(--mat-sys-on-background)] rounded-full h-[48px]">
+      <div class="w-full px-6 flex items-center justify-start">
+        <span class="material-symbols-rounded">
+          add_circle
+        </span>
+        <span class="ml-2">Nova Anamnese</span>
+      </div>
+    </div>
+    <div matRipple class="flex items-center w-full bg-transparent text-[var(--mat-sys-on-background)] rounded-full h-[48px]">
+      <div class="w-full px-6 flex items-center justify-start">
+        <span class="material-symbols-rounded">
+          group
+        </span>
+        <span class="ml-2">Gerenciar Usuários</span>
+      </div>
+    </div>
   </nav>
 </aside>

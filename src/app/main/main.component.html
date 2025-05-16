@@ -1,8 +1,8 @@
-<div class="flex h-screen">
+<div class="flex h-screen w-screen">
   <app-sidebar></app-sidebar>
-  <div class="flex-1 flex flex-col bg-gray-50">
+  <div #customBody class="flex-1 flex flex-col bg-[var(--mat-sys-background)]">
     <app-header></app-header>
-    <div class="p-6 flex-1 overflow-auto">
+    <div class="relative p-6 flex-1 overflow-auto w-full box-border">
       <router-outlet></router-outlet>
     </div>
   </div>

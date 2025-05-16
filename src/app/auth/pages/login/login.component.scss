@@ -1,0 +1,13 @@
+app-login{
+
+  .degrade-background{
+    @media(prefers-color-scheme: light) {
+      background-image: linear-gradient(to right bottom, #4f46e5, #3b82f6);
+    }
+    @media(prefers-color-scheme: dark) {
+      background-image: linear-gradient(to right bottom, #3731a5, #2d63b9);
+    }
+  }
+
+
+}
