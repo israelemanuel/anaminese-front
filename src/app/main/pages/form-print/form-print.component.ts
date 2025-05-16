@@ -15,12 +15,11 @@ export class FormPrintComponent {
 
   printDocument(): void {
     const printContents = document.getElementById('documento')?.innerHTML;
+    const headContents = document.head.innerHTML;
     if (printContents) {
       const printWindow = window.open('', '', 'height=600,width=800');
       if (printWindow) {
-        printWindow.document.write('<html><head><title>Impressão</title>');
-        printWindow.document.write('<style>body { font-family: Arial, sans-serif; }</style>'); // Adicione estilos se necessário
-        printWindow.document.write('</head><body>');
+        printWindow.document.write('<html><head>' + headContents + '<title>Impressão</title></head><body>');
         printWindow.document.write(printContents);
         printWindow.document.write('</body></html>');
         printWindow.document.close();
