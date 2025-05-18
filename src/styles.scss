@@ -17,7 +17,7 @@ html {
                     primary: theme.$helpdesk-palette,
                     tertiary: theme.$yellow-palette,
                 ),
-                typography: Nunito,
+                typography: Roboto,
                 density: 0,
             ));
     }
@@ -27,7 +27,7 @@ html {
                     primary: theme.$pink-palette,
                     tertiary: theme.$green-palette,
                 ),
-                typography: Nunito,
+                typography: Roboto,
                 density: 0,
             ));
     }
@@ -37,7 +37,7 @@ html {
                     primary: theme.$peach-palette,
                     tertiary: theme.$green-palette,
                 ),
-                typography: Nunito,
+                typography: Roboto,
                 density: 0,
             ));
     }
@@ -47,7 +47,7 @@ html {
                     primary: theme.$orange-palette,
                     tertiary: theme.$cyan-palette,
                 ),
-                typography: Nunito,
+                typography: Roboto,
                 density: 0,
             ));
     }
@@ -57,7 +57,7 @@ html {
                     primary: theme.$blue-palette,
                     tertiary: theme.$orange-palette,
                 ),
-                typography: Nunito,
+                typography: Roboto,
                 density: 0,
             ));
     }
@@ -67,7 +67,7 @@ html {
                     primary: theme.$cyan-palette,
                     tertiary: theme.$red-palette,
                 ),
-                typography: Nunito,
+                typography: Roboto,
                 density: 0,
             ));
     }
@@ -77,7 +77,7 @@ html {
                     primary: theme.$yellow-palette,
                     tertiary: theme.$navy-palette,
                 ),
-                typography: Nunito,
+                typography: Roboto,
                 density: 0,
             ));
     }
@@ -87,7 +87,7 @@ html {
                     primary: theme.$olive-palette,
                     tertiary: theme.$purple-palette,
                 ),
-                typography: Nunito,
+                typography: Roboto,
                 density: 0,
             ));
     }
@@ -97,7 +97,7 @@ html {
                     primary: theme.$green-palette,
                     tertiary: theme.$pink-palette,
                 ),
-                typography: Nunito,
+                typography: Roboto,
                 density: 0,
             ));
     }
@@ -107,7 +107,7 @@ html {
                     primary: theme.$purple-palette,
                     tertiary: theme.$navy-palette,
                 ),
-                typography: Nunito,
+                typography: Roboto,
                 density: 0,
             ));
     }
@@ -117,7 +117,7 @@ html {
                     primary: theme.$navy-palette,
                     tertiary: theme.$yellow-palette,
                 ),
-                typography: Nunito,
+                typography: Roboto,
                 density: 0,
             ));
     }
@@ -127,7 +127,7 @@ html {
                     primary: theme.$red-palette,
                     tertiary: theme.$blue-palette,
                 ),
-                typography: Nunito,
+                typography: Roboto,
                 density: 0,
             ));
     }
@@ -143,9 +143,12 @@ html {
                         primary: theme.$helpdesk-palette,
                         tertiary: theme.$yellow-palette,
                     ),
-                    typography: Nunito,
+                    typography: Roboto,
                     density: 0,
                 ));
+
+                --mat-sys-background: #242424 !important;
+                --mat-sys-surface: #3b3b3b !important;
         }
 
         &.pink {
@@ -153,7 +156,7 @@ html {
                         primary: theme.$pink-palette,
                         tertiary: theme.$green-palette,
                     ),
-                    typography: Nunito,
+                    typography: Roboto,
                     density: 0,
                 ));
         }
@@ -163,7 +166,7 @@ html {
                         primary: theme.$peach-palette,
                         tertiary: theme.$green-palette,
                     ),
-                    typography: Nunito,
+                    typography: Roboto,
                     density: 0,
                 ));
         }
@@ -173,7 +176,7 @@ html {
                         primary: theme.$orange-palette,
                         tertiary: theme.$cyan-palette,
                     ),
-                    typography: Nunito,
+                    typography: Roboto,
                     density: 0,
                 ));
         }
@@ -183,7 +186,7 @@ html {
                         primary: theme.$blue-palette,
                         tertiary: theme.$orange-palette,
                     ),
-                    typography: Nunito,
+                    typography: Roboto,
                     density: 0,
                 ));
         }
@@ -193,7 +196,7 @@ html {
                         primary: theme.$cyan-palette,
                         tertiary: theme.$red-palette,
                     ),
-                    typography: Nunito,
+                    typography: Roboto,
                     density: 0,
                 ));
         }
@@ -203,7 +206,7 @@ html {
                         primary: theme.$yellow-palette,
                         tertiary: theme.$navy-palette,
                     ),
-                    typography: Nunito,
+                    typography: Roboto,
                     density: 0,
                 ));
         }
@@ -213,7 +216,7 @@ html {
                         primary: theme.$olive-palette,
                         tertiary: theme.$purple-palette,
                     ),
-                    typography: Nunito,
+                    typography: Roboto,
                     density: 0,
                 ));
         }
@@ -223,7 +226,7 @@ html {
                         primary: theme.$green-palette,
                         tertiary: theme.$pink-palette,
                     ),
-                    typography: Nunito,
+                    typography: Roboto,
                     density: 0,
                 ));
         }
@@ -233,7 +236,7 @@ html {
                         primary: theme.$purple-palette,
                         tertiary: theme.$navy-palette,
                     ),
-                    typography: Nunito,
+                    typography: Roboto,
                     density: 0,
                 ));
         }
@@ -243,7 +246,7 @@ html {
                         primary: theme.$navy-palette,
                         tertiary: theme.$yellow-palette,
                     ),
-                    typography: Nunito,
+                    typography: Roboto,
                     density: 0,
                 ));
         }
@@ -253,7 +256,7 @@ html {
                         primary: theme.$red-palette,
                         tertiary: theme.$blue-palette,
                     ),
-                    typography: Nunito,
+                    typography: Roboto,
                     density: 0,
                 ));
         }
@@ -278,7 +281,7 @@ body {
 
 body {
     margin: 0;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Roboto', sans-serif;
 
     .material-symbols-rounded {
 
