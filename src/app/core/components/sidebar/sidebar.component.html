@@ -1,7 +1,8 @@
 <aside class="w-64 bg-[var(--mat-sys-surface)] shadow flex flex-col h-full">
   <div class="h-[80px] w-full bg-[var(--mat-sys-primary)]"></div>
   <nav class="flex-1 flex-col p-4 h-full ">
-    <div matRipple class="flex items-center w-full bg-transparent text-[var(--mat-sys-on-background)] rounded-full h-[48px]">
+
+    <div routerLink="/admin/dashboard" matRipple class="flex items-center w-full bg-transparent text-[var(--mat-sys-on-background)] rounded-full h-[48px]">
       <div class="w-full px-6 flex items-center justify-start">
         <span class="material-symbols-rounded">
           home
@@ -9,7 +10,8 @@
         <span class="ml-2">Dashboard</span>
       </div>
     </div>
-    <div matRipple class="flex items-center w-full bg-transparent text-[var(--mat-sys-on-background)] rounded-full h-[48px]">
+
+    <div routerLink="/admin/form" matRipple class="flex items-center w-full bg-transparent text-[var(--mat-sys-on-background)] rounded-full h-[48px]">
       <div class="w-full px-6 flex items-center justify-start">
         <span class="material-symbols-rounded">
           add_circle
@@ -17,13 +19,14 @@
         <span class="ml-2">Nova Anamnese</span>
       </div>
     </div>
-    <div matRipple class="flex items-center w-full bg-transparent text-[var(--mat-sys-on-background)] rounded-full h-[48px]">
+
+    <!-- <div routerLink="/admin/dashboard" matRipple class="flex items-center w-full bg-transparent text-[var(--mat-sys-on-background)] rounded-full h-[48px]">
       <div class="w-full px-6 flex items-center justify-start">
         <span class="material-symbols-rounded">
           group
         </span>
         <span class="ml-2">Gerenciar Usuários</span>
       </div>
-    </div>
+    </div> -->
   </nav>
 </aside>
