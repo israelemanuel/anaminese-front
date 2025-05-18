@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormField, MatInput, MatInputModule } from '@angular/material/input';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,9 +13,10 @@ import { MatFormField, MatInput, MatInputModule } from '@angular/material/input'
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatButtonModule
-
+    MatButtonModule,
+    RouterLink,
   ],
+
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
