@@ -1,141 +1,177 @@
 <div class="flex justify-between items-center mb-6 box-border">
-  <h1 class="text-2xl font-bold text-[var(--mat-sys-primary)]">Anaminese</h1>
+    <h1 class="text-2xl font-bold text-[var(--mat-sys-primary)]">Anaminese</h1>
+    <button (click)="salvar()" mat-raised-button color="primary" type="button">
+        <mat-icon class="mr-2">save</mat-icon>
+        Salvar
+    </button>
 </div>
 
-<div class="flex flex-col gap-4 box-border">
+<form [formGroup]="formProntuario" class="flex flex-col gap-4 box-border">
 
-  <div
-    class="w-full flex flex-col gap-4 bg-[var(--mat-sys-surface)] rounded-2xl p-6 box-border text-[var(--mat-sys-on-surface)]"
-    style="box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-    <span class="mb-4 font-bold" style="font-size: 1rem;">Cabeçalho</span>
+    <div class="w-full flex flex-col gap-4 bg-[var(--mat-sys-surface)] rounded-2xl p-6 box-border text-[var(--mat-sys-on-surface)]"
+        style="box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+        <span class="mb-4 font-bold" style="font-size: 1rem;">Cabeçalho</span>
 
 
-    <div class="grid grid-cols-6 gap-4">
-      <div class="col-span-1 md:col-span-2">
-        <mat-form-field appearance="outline" class="w-full custom no_hint">
-          <mat-label>Data</mat-label>
-          <input matInput [matDatepicker]="picker1" placeholder="Data">
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-        </mat-form-field>
-      </div>
-      <!-- Entrevistado(a) -->
-      <div class="col-span-1 md:col-span-2">
-        <mat-form-field appearance="outline" class="w-full custom no_hint">
-          <mat-label>Entrevistado(a)</mat-label>
-          <input matInput placeholder="Entrevistado(a)">
-        </mat-form-field>
-      </div>
-      <!-- Avaliador -->
-      <div class="col-span-1 md:col-span-2">
-        <mat-form-field appearance="outline" class="w-full custom no_hint">
-          <mat-label>Avaliador</mat-label>
-          <input matInput placeholder="Avaliador">
-        </mat-form-field>
-      </div>
-    </div>
-  </div>
-
-  <mat-accordion multi>
-    <!-- Acordeão: Identificação da Criança -->
-    <ng-container *ngFor="let item of form; let i = index">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title class="font-bold">{{item.section}}</mat-panel-title>
-        </mat-expansion-panel-header>
-        <form  class="flex flex-col gap-2 w-full" action="">
-          <ng-container *ngFor="let area of item.areas; let j = index">
-            <ng-container *ngIf="area.name != ''">
-              <span class="font-semibold text-[var(--mat-sys-primary)]">{{area.name}}</span>
-            </ng-container>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-              <ng-container *ngFor="let field of area.fields; let k = index">
-                <div [ngClass]="!isMobile ? field.width : 'col-span-1'">
-                  <!-- Campo input -->
-                  <mat-form-field *ngIf="field.type === 'input'" appearance="outline" class="w-full custom no_hint">
-                    <mat-label>{{field.label}}</mat-label>
-                    <input [(ngModel)]="field.value" matInput [placeholder]="field.label" [name]="item.sectionClean + field.label">
-                  </mat-form-field>
-                  <!-- Campo date -->
-                  <mat-form-field *ngIf="field.type === 'date'" appearance="outline" class="w-full custom no_hint">
-                    <mat-label>{{field.label}}</mat-label>
-                    <input [(ngModel)]="field.value" matInput [matDatepicker]="picker" [placeholder]="field.label" [name]="item.sectionClean + field.label">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field>
-                  <!-- Campo textarea -->
-                  <mat-form-field *ngIf="field.type === 'textarea'" appearance="outline" class="w-full custom no_hint">
-                    <mat-label>{{field.label}}</mat-label>
-                    <textarea [(ngModel)]="field.value" matInput [placeholder]="field.label" [name]="item.sectionClean + field.label"></textarea>
-                  </mat-form-field>
-                  <!-- Campo select -->
-                  <mat-form-field *ngIf="field.type === 'select'" appearance="outline" class="w-full custom no_hint">
-                    <mat-label>{{field.label}}</mat-label>
-                    <mat-select [(ngModel)]="field.value" [placeholder]="field.label" [name]="item.sectionClean + field.label">
-                      <mat-option *ngFor="let opt of field.options" [value]="opt">{{opt}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </ng-container>
+        <div class="grid grid-cols-6 gap-4">
+            <div class="col-span-1 md:col-span-2">
+                <mat-form-field appearance="outline" class="w-full custom no_hint">
+                    <mat-label>Data</mat-label>
+                    <input formControlName="data" matInput [matDatepicker]="picker1" placeholder="Data">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
             </div>
-          </ng-container>
-        </form>
-      </mat-expansion-panel>
-    </ng-container>
-  </mat-accordion>
-
-  <div
-    class="w-full flex flex-col gap-4 bg-[var(--mat-sys-surface)] rounded-2xl p-6 box-border text-[var(--mat-sys-on-surface)]"
-    style="box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-    <span class="mb-4 font-bold" style="font-size: 1rem;">Termo de veracidade das
-      informações</span>
-    <span>Eu,</span>
-
-
-
-    <div class="grid grid-cols-4 gap-4 items-center">
-
-      <div class="col-span-1 md:col-span-2">
-        <mat-form-field appearance="outline" class="w-full custom no_hint">
-          <mat-label>Nome do responsável</mat-label>
-          <input matInput placeholder="Nome do responsável">
-        </mat-form-field>
-      </div>
-
-
-      <div class="col-span-1 md:col-span-2">
-        <mat-form-field appearance="outline" class="w-full custom no_hint">
-          <mat-label>CPF</mat-label>
-          <input matInput placeholder="CPF">
-        </mat-form-field>
-      </div>
+            <!-- Entrevistado(a) -->
+            <div class="col-span-1 md:col-span-2">
+                <mat-form-field appearance="outline" class="w-full custom no_hint">
+                    <mat-label>Entrevistado(a)</mat-label>
+                    <input type="text"
+                           formControlName="entrevistado"
+                           matInput
+                           placeholder="Entrevistado(a)"
+                           [matAutocomplete]="autoEntrevistado">
+                    <mat-autocomplete #autoEntrevistado="matAutocomplete">
+                        <mat-option *ngFor="let option of pacientesFiltrados$ | async" [value]="option.nome">
+                            {{ option.nome }}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <!-- Avaliador -->
+            <div class="col-span-1 md:col-span-2">
+                <mat-form-field appearance="outline" class="w-full custom no_hint">
+                    <mat-label>Avaliador</mat-label>
+                    <input type="text"
+                           formControlName="dr_entrevistador"
+                           matInput
+                           placeholder="Avaliador"
+                           [matAutocomplete]="autoAvaliador">
+                    <mat-autocomplete #autoAvaliador="matAutocomplete">
+                        <mat-option *ngFor="let option of doutoresFiltrados$ | async" [value]="option.nome">
+                            {{ option.nome }}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+        </div>
     </div>
 
-    <span>declaro que os dados desta anamnese são verdadeiros e foram fornecidos por mim e pelos demais informantes
-      citados anteriormente.
-    </span>
+    <mat-accordion multi>
+        <!-- Acordeão: Identificação da Criança -->
+        <ng-container *ngFor="let item of form; let i = index">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="font-bold">{{item.section}}</mat-panel-title>
+                </mat-expansion-panel-header>
+                <form class="flex flex-col gap-2 w-full" action="">
+                    <ng-container *ngFor="let area of item.areas; let j = index">
+                        <ng-container *ngIf="area.name != ''">
+                            <span class="font-semibold text-[var(--mat-sys-primary)]">{{area.name}}</span>
+                        </ng-container>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                            <ng-container *ngFor="let field of area.fields; let k = index">
+                                <div [ngClass]="!isMobile ? field.width : 'col-span-1'">
+                                    <!-- Campo input -->
+                                    <mat-form-field *ngIf="field.type === 'input'" appearance="outline"
+                                        class="w-full custom no_hint">
+                                        <mat-label>{{field.label}}</mat-label>
+                                        <input [(ngModel)]="field.value" matInput [placeholder]="field.label"
+                                            [name]="item.sectionClean + field.label">
+                                    </mat-form-field>
+                                    <!-- Campo date -->
+                                    <mat-form-field *ngIf="field.type === 'date'" appearance="outline"
+                                        class="w-full custom no_hint">
+                                        <mat-label>{{field.label}}</mat-label>
+                                        <input [(ngModel)]="field.value" matInput [matDatepicker]="picker"
+                                            [placeholder]="field.label" [name]="item.sectionClean + field.label">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                    <!-- Campo textarea -->
+                                    <mat-form-field *ngIf="field.type === 'textarea'" appearance="outline"
+                                        class="w-full custom no_hint">
+                                        <mat-label>{{field.label}}</mat-label>
+                                        <textarea [(ngModel)]="field.value" matInput [placeholder]="field.label"
+                                            [name]="item.sectionClean + field.label"></textarea>
+                                    </mat-form-field>
+                                    <!-- Campo select -->
+                                    <mat-form-field *ngIf="field.type === 'select'" appearance="outline"
+                                        class="w-full custom no_hint">
+                                        <mat-label>{{field.label}}</mat-label>
+                                        <mat-select [(ngModel)]="field.value" [placeholder]="field.label"
+                                            [name]="item.sectionClean + field.label">
+                                            <mat-option *ngFor="let opt of field.options"
+                                                [value]="opt">{{opt}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </form>
+            </mat-expansion-panel>
+        </ng-container>
+    </mat-accordion>
 
-    <span class="mt-[4dvh] mb-4 font-bold text-[var(--mat-sys-primary)]" style="font-size: 0.8rem;">Assinatura</span>
+    <div class="w-full flex flex-col gap-4 bg-[var(--mat-sys-surface)] rounded-2xl p-6 box-border text-[var(--mat-sys-on-surface)]"
+        style="box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+        <span class="mb-4 font-bold" style="font-size: 1rem;">Termo de veracidade das
+            informações</span>
+        <span>Eu,</span>
 
-    <div
-      class="w-full flex items-center justify-center border border-solid border-[var(--mat-sys-outline)] rounded-xl py-10 px-4 box-border">
-      <span>Campo disponível apenas durante a impressão</span>
+
+
+        <div class="grid grid-cols-4 gap-4 items-center">
+
+            <div class="col-span-1 md:col-span-2">
+                <mat-form-field appearance="outline" class="w-full custom no_hint">
+                    <mat-label>Nome do responsável</mat-label>
+                    <input matInput placeholder="Nome do responsável">
+                </mat-form-field>
+            </div>
+
+
+            <div class="col-span-1 md:col-span-2">
+                <mat-form-field appearance="outline" class="w-full custom no_hint">
+                    <mat-label>CPF</mat-label>
+                    <input matInput placeholder="CPF">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <span>declaro que os dados desta anamnese são verdadeiros e foram fornecidos por mim e pelos demais informantes
+            citados anteriormente.
+        </span>
+
+        <span class="mt-[4dvh] mb-4 font-bold text-[var(--mat-sys-primary)]"
+            style="font-size: 0.8rem;">Assinatura</span>
+
+        <div
+            class="w-full flex items-center justify-center border border-solid border-[var(--mat-sys-outline)] rounded-xl py-10 px-4 box-border">
+            <span>Campo disponível apenas durante a impressão</span>
+        </div>
+
     </div>
 
-  </div>
+    <div class="w-full flex flex-col gap-4 bg-[var(--mat-sys-surface)] rounded-2xl p-6 box-border text-[var(--mat-sys-on-surface)]"
+        style="box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+        <span class="mb-4 font-bold" style="font-size: 1rem;">Profissional Executante</span>
 
-  <div
-    class="w-full flex flex-col gap-4 bg-[var(--mat-sys-surface)] rounded-2xl p-6 box-border text-[var(--mat-sys-on-surface)]"
-    style="box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
-    <span class="mb-4 font-bold" style="font-size: 1rem;">Profissional Executante</span>
+        <span class="mt-[4dvh] mb-4 font-bold text-[var(--mat-sys-primary)]"
+            style="font-size: 0.8rem;">Assinatura</span>
+        <div
+            class="w-full flex items-center justify-center border border-solid border-[var(--mat-sys-outline)] rounded-xl py-10 px-4 box-border">
+            <span>Campo disponível apenas durante a impressão</span>
+        </div>
 
-    <span class="mt-[4dvh] mb-4 font-bold text-[var(--mat-sys-primary)]" style="font-size: 0.8rem;">Assinatura</span>
-    <div
-      class="w-full flex items-center justify-center border border-solid border-[var(--mat-sys-outline)] rounded-xl py-10 px-4 box-border">
-      <span>Campo disponível apenas durante a impressão</span>
+
+
     </div>
-
-
-
-  </div>
-</div>
+    <div class="flex justify-end mt-4">
+        <button (click)="salvar()" mat-raised-button color="primary" type="submit">
+            <mat-icon class="mr-2">save</mat-icon>
+            Salvar
+        </button>
+    </div>
+</form>

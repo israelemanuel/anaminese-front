@@ -12,15 +12,15 @@
     <h2 class="text-center text-xl font-bold text-[var(--mat-sys-on-surface)] mb-1">Sistema de Anamnese</h2>
     <p class="text-center text-sm text-[var(--mat-sys-on-surface)] mb-6">Faça login para acessar o sistema.</p>
 
-    <form class="flex flex-col gap-4 ">
+    <form [formGroup]="formLogin" class="flex flex-col gap-4 ">
       <mat-form-field appearance="outline" class="custom no_hint">
         <mat-label>E-mail</mat-label>
-        <input matInput placeholder="seu@email.com" type="email" required>
+        <input formControlName="email" matInput placeholder="seu@email.com" type="email" required>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="custom no_hint">
         <mat-label>Senha</mat-label>
-        <input matInput placeholder="********" type="password" required>
+        <input formControlName="password" matInput placeholder="********" type="password" required>
       </mat-form-field>
 
       <button mat-raised-button color="primary" (click)="signIn()" class="w-full mb-4">

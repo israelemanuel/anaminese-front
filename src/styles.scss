@@ -1,5 +1,7 @@
+// @use 'ngx-toastr/toastr';
 @use '@angular/material' as mat;
 @use './m3-theme' as theme;
+@import 'ngx-toastr/toastr';
 
 
 // @tailwind base;
@@ -147,8 +149,8 @@ html {
                     density: 0,
                 ));
 
-                --mat-sys-background: #242424 !important;
-                --mat-sys-surface: #3b3b3b !important;
+            --mat-sys-background: #242424 !important;
+            --mat-sys-surface: #3b3b3b !important;
         }
 
         &.pink {
