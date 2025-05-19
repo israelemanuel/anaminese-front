@@ -15,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 // import { ReplacePipe } from '../../../shared/pipes/replace.pipe';
 
 import form from './relatorio-cru';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseGenericoService } from '../../../core/services/base-generico.service';
 import { Observable, startWith, map } from 'rxjs';
 
@@ -79,15 +79,27 @@ export class FormComponent implements AfterViewInit, OnInit {
         dr_entrevistador: new UntypedFormControl(null, [Validators.required]),
     })
 
+    public hasCache: boolean = false;
+    private cacheKey = 'formProntuarioDtoCache';
+    public showCacheDialog: boolean = false;
+
 
 
     constructor(
         private activeRouter: ActivatedRoute,
         private http: BaseGenericoService,
         private toast: ToastrService,
+        private router : Router
     ) { }
 
     ngOnInit(): void {
+        // Verifica se há cache de DTO para novo formulário
+        if (!this.id && localStorage.getItem(this.cacheKey)) {
+            this.hasCache = true;
+            this.showCacheDialog = true;
+        } else {
+            this.hasCache = false;
+        }
         this.activeRouter.params.subscribe((params: any) => {
             if (params['id']) {
                 this.id = params['id'];
@@ -98,16 +110,55 @@ export class FormComponent implements AfterViewInit, OnInit {
             this.carregarPacientes();
             this.carregarDoutores();
         })
-
         this.pacientesFiltrados$ = this.entrevistadoControl.valueChanges.pipe(
             startWith(''),
             map(value => this._filterPacientes(value || ''))
         );
-
         this.doutoresFiltrados$ = this.avaliadorControl.valueChanges.pipe(
             startWith(''),
             map(value => this._filterDoutores(value || ''))
         );
+    }
+
+    onCacheDialogAction(keep: boolean) {
+        if (keep) {
+            this.recuperarCacheDto();
+        } else {
+            this.clearCacheDto();
+        }
+        this.showCacheDialog = false;
+    }
+
+    private saveCacheDto(dto: any) {
+        localStorage.setItem(this.cacheKey, JSON.stringify(dto));
+        this.hasCache = true;
+    }
+
+    private recuperarCacheDto() {
+        const cache = localStorage.getItem(this.cacheKey);
+        if (cache) {
+            try {
+                const dto = JSON.parse(cache);
+                this.formProntuario.patchValue({
+                    data: dto.data_avaliacao,
+                    entrevistado: dto.entrevistado,
+                    dr_entrevistador: dto.dr_entrevistador
+                });
+                if (dto.dados_personalizados) {
+                    this.form = dto.dados_personalizados;
+                }
+                this.toast.success('Dados recuperados do rascunho!');
+                this.clearCacheDto(); // Limpa o cache após recuperar
+            } catch (e) {
+                this.toast.error('Erro ao recuperar dados do rascunho!');
+            }
+        }
+        this.hasCache = false;
+    }
+
+    private clearCacheDto() {
+        localStorage.removeItem(this.cacheKey);
+        this.hasCache = false;
     }
 
     get avaliadorControl(): UntypedFormControl {
@@ -136,13 +187,6 @@ export class FormComponent implements AfterViewInit, OnInit {
             ...section,
             sectionClean: this.cleanString(section.section)
         }));
-    }
-
-    carregarForm() {
-        this.http.get('relatorio-cru').subscribe((resposta: any) => {
-            this.form = resposta;
-            this.form = this.preprocessForm(this.form);
-        });
     }
 
     carregarPacientes() {
@@ -197,18 +241,11 @@ export class FormComponent implements AfterViewInit, OnInit {
         }
     }
 
-    getForm() {
-        // ...existing code...
-    }
-
     salvar() {
-
         if (!this.formProntuario.valid) {
-            console.log('Formulário inválido');
             this.toast.error('Preencha todos os campos obrigatórios!');
             return;
         }
-
         const dto = {
             data_avaliacao: this.formProntuario.get('data')?.value,
             entrevistado: this.formProntuario.get('entrevistado')?.value,
@@ -216,31 +253,30 @@ export class FormComponent implements AfterViewInit, OnInit {
             avaliador: this.formProntuario.get('entrevistador_id')?.value,
             dados_personalizados: this.form
         }
-
         if (this.id) { //UPDATE
             this.http.put(`api/v1/prontuarios/${this.id}`, dto)
                 .subscribe({
                     next: (resposta) => {
-                        console.log('Resposta==>>', resposta);
                         this.toast.success('Prontuário atualizado com sucesso!');
+                        this.router.navigate(['/admin/form-print', this.id]);
                     },
                     error: (error) => {
-                        console.error('Erro ao atualizar prontuário:', error);
                         this.toast.error('Erro ao atualizar prontuário!');
+                        this.saveCacheDto(dto); // Salva DTO no cache em caso de erro
                     }
                 });
         } else { //CREATE
             this.http.post('api/v1/prontuarios', dto).subscribe({
                 next: (value) => {
-                    console.log('Resposta==>>', value);
                     this.toast.success('Prontuário criado com sucesso!');
+                    this.router.navigate(['/admin/form-print', value.id]);
+                    this.clearCacheDto();
                 },
                 error: (err) => {
-                    console.error('Erro ao criar prontuário:', err);
                     this.toast.error('Erro ao criar prontuário!');
+                    this.saveCacheDto(dto); // Salva DTO no cache em caso de erro
                 }
             });
-
         }
     }
 

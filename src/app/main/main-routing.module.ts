@@ -14,6 +14,7 @@ const routes: Routes = [
             { path: 'form', loadComponent: () => import('./pages/form/form.component').then(m => m.FormComponent) },
             { path: 'form/:id', loadComponent: () => import('./pages/form/form.component').then(m => m.FormComponent) },
             { path: 'form-print', loadComponent: () => import('./pages/form-print/form-print.component').then(m => m.FormPrintComponent) },
+            { path: 'form-print/:id', loadComponent: () => import('./pages/form-print/form-print.component').then(m => m.FormPrintComponent) },
 
             { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
 
