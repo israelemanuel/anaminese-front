@@ -70,14 +70,14 @@
                                         class="w-full custom no_hint">
                                         <mat-label>{{field.label}}</mat-label>
                                         <input [(ngModel)]="field.value" matInput [placeholder]="field.label"
-                                            [name]="item.sectionClean + field.label">
+                                            [name]="field.name">
                                     </mat-form-field>
                                     <!-- Campo date -->
                                     <mat-form-field *ngIf="field.type === 'date'" appearance="outline"
                                         class="w-full custom no_hint">
                                         <mat-label>{{field.label}}</mat-label>
                                         <input [(ngModel)]="field.value" matInput [matDatepicker]="picker"
-                                            [placeholder]="field.label" [name]="item.sectionClean + field.label">
+                                            [placeholder]="field.label" [name]="field.name">
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>
@@ -86,14 +86,14 @@
                                         class="w-full custom no_hint">
                                         <mat-label>{{field.label}}</mat-label>
                                         <textarea [(ngModel)]="field.value" matInput [placeholder]="field.label"
-                                            [name]="item.sectionClean + field.label"></textarea>
+                                            [name]="field.name"></textarea>
                                     </mat-form-field>
                                     <!-- Campo select -->
                                     <mat-form-field *ngIf="field.type === 'select'" appearance="outline"
                                         class="w-full custom no_hint">
                                         <mat-label>{{field.label}}</mat-label>
                                         <mat-select [(ngModel)]="field.value" [placeholder]="field.label"
-                                            [name]="item.sectionClean + field.label">
+                                            [name]="field.name">
                                             <mat-option *ngFor="let opt of field.options"
                                                 [value]="opt">{{opt}}</mat-option>
                                         </mat-select>
