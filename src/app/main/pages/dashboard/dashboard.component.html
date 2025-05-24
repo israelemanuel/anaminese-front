@@ -1,24 +1,71 @@
-<div class="flex justify-between items-center mb-6 box-border">
-  <h1 class="text-2xl font-bold text-[var(--mat-sys-primary)]">Dashboard</h1>
-  <button routerLink="/admin/form" mat-raised-button color="primary">Nova Anamnese</button>
-</div>
-
-<p class="text-gray-500 mb-4">Gerencie e visualize todas as anamneses cadastradas.</p>
-
-<mat-form-field appearance="outline" class="w-full max-w-md custom no_hint mb-4">
-  <mat-label>Buscar por nome ou CPF...</mat-label>
-  <input matInput>
-</mat-form-field>
-
-<div class="w-full bg-transparent rounded-lg p-8 text-center box-border" style="border: var(--main-border);">
-
-  <div class="text-5xl text-[var(--mat-sys-secondary)] mb-4">
-    <span class="material-symbols-rounded">
-      description
-    </span>
+<div class="flex flex-col w-full h-full">
+  <div class="flex justify-between items-center mb-6 box-border">
+    <h1 class="text-2xl font-bold text-[var(--mat-sys-primary)]">Dashboard</h1>
+    <button routerLink="/admin/form" mat-raised-button color="primary">Nova Anamnese</button>
   </div>
 
-  <h2 class="text-lg font-semibold mb-2 text-[var(--mat-sys-on-background)]">Nenhuma anamnese encontrada</h2>
-  <p class="text-gray-500 mb-4">Você ainda não possui anamneses cadastradas ou nenhuma corresponde à sua busca.</p>
-  <button routerLink="/admin/form" mat-raised-button color="primary">Criar primeira anamnese</button>
+  <p class="text-gray-500 mb-4">Gerencie e visualize todas as anamneses cadastradas.</p>
+
+
+  <mat-form-field appearance="outline" class="w-full max-w-md custom no_hint mb-4">
+    <mat-label>Buscar por nome ou CPF...</mat-label>
+    <input matInput [(ngModel)]="searchTerm" (ngModelChange)="filterAnamineses()">
+  </mat-form-field>
+
+  <div
+    class="h-full w-full bg-transparent rounded-lg py-4 pl-4 text-center box-border overflow-x-hidden overflow-y-scroll"
+    style="border: var(--main-border);">
+    <ng-container *ngIf="filteredAnamineses.length == 0 && !isLoaded">
+      <div class="text-5xl text-[var(--mat-sys-secondary)] mb-4">
+        <span class="material-symbols-rounded">
+          description
+        </span>
+      </div>
+      <h2 class="text-lg font-semibold mb-2 text-[var(--mat-sys-on-background)]">Nenhuma anamnese encontrada</h2>
+      <p class="text-gray-500 mb-4">Você ainda não possui anamneses cadastradas ou nenhuma corresponde à sua busca.</p>
+      <button routerLink="/admin/form" mat-raised-button color="primary">Criar primeira anamnese</button>
+    </ng-container>
+
+    <ng-container *ngIf="filteredAnamineses.length > 0 && !isLoaded">
+      <div class="w-full grid grid-cols-[repeat(auto-fit,_minmax(280px,_1fr))] gap-4">
+        <ng-container *ngFor="let item of filteredAnamineses">
+          <div
+            class="relative w-full flex flex-col gap-2 min-h-[200px] bg-[var(--mat-sys-surface)] text-[var(--mat-sys-on-surface)] rounded-lg p-4 box-border items-start justify-between shadow-md hover:shadow-lg transition-all duration-200 ease-in-out cursor-pointer">
+
+            <div class="absolute top-4 right-2 bg-[var(--mat-sys-primary)] text-[var(--mat-sys-on-primary)] rounded-full px-2 py-1">
+              <span style="font-size: 0.8rem;">{{item.data}}</span>
+            </div>
+
+            <div class="flex flex-col w-full items-start gap-4">
+              <span style="font-size: 1.1rem;">{{item.nome}}</span>
+              <div class="flex flex-row justify-between items-center w-full">
+                <span style="font-size: 0.8rem;">CPF: {{item.cpf}}</span>
+                <span style="font-size: 0.8rem;">Idade: {{item.idade}}</span>
+              </div>
+            </div>
+
+            <div class="flex flex-col w-full items-start gap-2">
+              <span style="font-size: 0.8rem;">Resposáveis:</span>
+              <div class="flex flex-col items-start gap-1 w-full">
+                <span>{{item.responsavel_1}}</span>
+                <span>{{item.responsavel_2}}</span>
+              </div>
+            </div>
+
+            <div class="absolute right-4 bottom-4">
+              <button mat-icon-button>
+                <span class="material-symbols-rounded">
+                  delete
+                </span>
+              </button>
+            </div>
+
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+
+
+  </div>
+
 </div>
